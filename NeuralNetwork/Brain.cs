@@ -12,7 +12,25 @@ namespace NeuralNetwork
 
         public int NumberOfInputs => Layers.First().NumberOfInputs;
 
-        public List<double> Genome => Layers.SelectMany(l => l.Weights).ToList();
+        public List<double> Genome
+        {
+            get => Layers.SelectMany(l => l.Weights).ToList();
+            set
+            {
+                for (var i = 0; i < Layers.Count; i++)
+                {
+                    var layer = Layers[i];
+                    for (var j = 0; j < layer.Neurons.Count; j++)
+                    {
+                        var neuron = layer.Neurons[j];
+                        for (var k = 0; k < neuron.Weights.Count; k++)
+                        {
+                            neuron.Weights[k] = value[i + j + k];
+                        }
+                    }
+                }
+            }
+        }
 
         public Brain(int numInputs, int numHiddenLayers, int layerWidth, int numOutputs, Random rand = null)
         {
