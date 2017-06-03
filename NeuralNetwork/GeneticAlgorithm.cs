@@ -31,15 +31,15 @@ namespace NeuralNetwork
 
         private Random Rand => random ?? (random = new Random(Seed));
 
-        public Genome GenomeRoulette()
+        public Tuple<int, Genome> GenomeRoulette()
         {
             var randomValue = Rand.NextDouble() * TotalFitness;
-            foreach (var genome in Genomes)
+            for (var i = 0; i < Genomes.Count; i++)
             {
-                randomValue -= genome.Fitness;
-                if (randomValue <= 0) return genome;
+                randomValue -= Genomes[i].Fitness;
+                if (randomValue <= 0) return new Tuple<int, Genome>(i, Genomes[i]);
             }
-            return Genomes.Last();
+            return new Tuple<int, Genome>(Genomes.Count - 1, Genomes.Last());
         }
 
         public Tuple<Genome, Genome> Crossover(Genome mom, Genome dad)
