@@ -32,7 +32,7 @@ namespace NeuralNetwork
             }
         }
 
-        public Brain(int numInputs, int numHiddenLayers, int layerWidth, int numOutputs, double p, Random rand = null)
+        public Brain(int numInputs, int numHiddenLayers, int layerWidth, int numOutputs, double learningRate = .1, double p = 1, Random rand = null)
         {
             if (numHiddenLayers < 1)
             {
@@ -40,29 +40,66 @@ namespace NeuralNetwork
             }
             var random = rand ?? new Random();
             Layers = new List<NeuronLayer>();
-            Layers.Add(new NeuronLayer(numInputs, layerWidth, p, random));
-            Layers.AddRange(new int[numHiddenLayers - 1].Select(i => new NeuronLayer(layerWidth, layerWidth, p, random)).ToList());
-            Layers.Add(new NeuronLayer(layerWidth, numOutputs, p, random));
+            Layers.Add(new NeuronLayer(numInputs, layerWidth, learningRate, p, random));
+            Layers.AddRange(new int[numHiddenLayers - 1].Select(i => new NeuronLayer(layerWidth, layerWidth, learningRate, p, random)).ToList());
+            Layers.Add(new NeuronLayer(layerWidth, numOutputs, learningRate, p, random));
         }
 
-        public List<double> Think(List<double> inputs)
+        public List<List<double>> Think(List<double> inputs)
         {
-            var previousOutput = inputs;
-            foreach (var layer in Layers)
+            var outputs = new List<List<double>> { inputs };
+            for (var i = 0; i < Layers.Count; i++)
             {
-                previousOutput = layer.Think(previousOutput);
+                outputs.Add(Layers[i].Think(outputs[i]));
             }
-            return previousOutput;
+            return outputs;
         }
 
-        public async Task<List<double>> ThinkAsync(List<double> inputs)
+        public async Task<List<List<double>>> ThinkAsync(List<double> inputs)
         {
-            var previousOutput = inputs;
+            var outputs = new List<List<double>> {inputs};
+            for (var i = 0; i < Layers.Count; i++)
+            {
+                outputs.Add(await Layers[i].ThinkAsync(outputs[i]));
+            }
+            return outputs;
+        }
+
+        public void Learn(List<double> inputs, List<double> correct)
+        {
+            BackpropErrors(inputs, correct);
+            UpdateWeights(inputs);
+        }
+
+        private void BackpropErrors(List<double> inputs, List<double> correct)
+        {
+            for (var i = Layers.Count - 1; i >= 0; i--)
+            {
+                var layer = Layers[i];
+                var errors = i != Layers.Count - 1
+                    ? layer.Neurons.Select((n, j) => Layers[i + 1].Neurons.Sum(n1 => n1.Weights[j] * n1.Delta)).ToList()
+                    : layer.Neurons.Select((n, j) => correct[j] - n.Output).ToList();
+                for (var j = 0; j < layer.Neurons.Count; j++)
+                {
+                    layer.Neurons[j].CalculateDelta(inputs, errors[j]);
+                }
+            }
+        }
+
+        private void UpdateWeights(List<double> inputs)
+        {
+            var prevOutputs = inputs;
             foreach (var layer in Layers)
             {
-                previousOutput = await layer.ThinkAsync(previousOutput);
+                layer.UpdateWeights(prevOutputs);
+                prevOutputs = layer.Neurons.Select(n =>
+                {
+                    var output = n.Output;
+                    n.Output = 0;
+                    n.Delta = 0;
+                    return output;
+                }).ToList();
             }
-            return previousOutput;
         }
     }
 }
