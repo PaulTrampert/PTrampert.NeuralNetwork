@@ -10,6 +10,11 @@ namespace NeuralNetwork
 
         public double Fitness { get; set; }
 
+        public Genome()
+        {
+            Genes = new List<double>();
+        }
+
         public static bool operator <(Genome lhs, Genome rhs)
         {
             return lhs.Fitness < rhs.Fitness;

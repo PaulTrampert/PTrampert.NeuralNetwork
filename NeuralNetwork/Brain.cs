@@ -12,7 +12,7 @@ namespace NeuralNetwork
 
         public int NumberOfInputs => Layers.First().NumberOfInputs;
 
-        public List<double> Genome
+        public List<double> Genes
         {
             get => Layers.SelectMany(l => l.Weights).ToList();
             set
@@ -32,7 +32,7 @@ namespace NeuralNetwork
             }
         }
 
-        public Brain(int numInputs, int numHiddenLayers, int layerWidth, int numOutputs, Random rand = null)
+        public Brain(int numInputs, int numHiddenLayers, int layerWidth, int numOutputs, double p, Random rand = null)
         {
             if (numHiddenLayers < 1)
             {
@@ -40,19 +40,19 @@ namespace NeuralNetwork
             }
             var random = rand ?? new Random();
             Layers = new List<NeuronLayer>();
-            Layers.Add(new NeuronLayer(numInputs, layerWidth, random));
-            Layers = new int[numHiddenLayers - 1].Select(i => new NeuronLayer(layerWidth, layerWidth, random)).ToList();
-            Layers.Add(new NeuronLayer(layerWidth, numOutputs, random));
+            Layers.Add(new NeuronLayer(numInputs, layerWidth, p, random));
+            Layers.AddRange(new int[numHiddenLayers - 1].Select(i => new NeuronLayer(layerWidth, layerWidth, p, random)).ToList());
+            Layers.Add(new NeuronLayer(layerWidth, numOutputs, p, random));
         }
 
-        public List<List<double>> Think(List<double> inputs)
+        public List<double> Think(List<double> inputs)
         {
-            var results = new List<List<double>>{inputs};
+            var previousOutput = inputs;
             foreach (var layer in Layers)
             {
-                results.Add(layer.Think(results.Last()));
+                previousOutput = layer.Think(previousOutput);
             }
-            return results;
+            return previousOutput;
         }
 
         public async Task<List<double>> ThinkAsync(List<double> inputs)

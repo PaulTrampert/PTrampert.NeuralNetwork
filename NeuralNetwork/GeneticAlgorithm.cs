@@ -31,18 +31,18 @@ namespace NeuralNetwork
 
         private Random Rand => random ?? (random = new Random(Seed));
 
-        public Tuple<int, Genome> GenomeRoulette()
+        public Genome GenomeRoulette()
         {
             var randomValue = Rand.NextDouble() * TotalFitness;
-            for (var i = 0; i < Genomes.Count; i++)
+            foreach (var genome in Genomes)
             {
-                randomValue -= Genomes[i].Fitness;
-                if (randomValue <= 0) return new Tuple<int, Genome>(i, Genomes[i]);
+                randomValue -= genome.Fitness;
+                if (randomValue <= 0) return genome;
             }
-            return new Tuple<int, Genome>(Genomes.Count - 1, Genomes.Last());
+            return Genomes.Last();
         }
 
-        public Tuple<Genome, Genome> Crossover(Genome mom, Genome dad)
+        public Genome Crossover(Genome mom, Genome dad)
         {
             if (mom.Genes.Count != dad.Genes.Count)
             {
@@ -51,22 +51,20 @@ namespace NeuralNetwork
 
             var swapIndex = Rand.Next((int) Math.Round((mom.Genes.Count - 1) * CrossoverRate));
 
-            var children = new Tuple<Genome, Genome>(new Genome(), new Genome());
+            var child = new Genome();
 
             for (var i = 0; i < mom.Genes.Count; i++)
             {
                 if (i > swapIndex)
                 {
-                    children.Item1.Genes.Add(dad.Genes[i]);
-                    children.Item2.Genes.Add(mom.Genes[i]);
+                    child.Genes.Add(dad.Genes[i]);
                 }
                 else
                 {
-                    children.Item1.Genes.Add(mom.Genes[i]);
-                    children.Item2.Genes.Add(dad.Genes[i]);
+                    child.Genes.Add(mom.Genes[i]);
                 }
             }
-            return children;
+            return child;
         }
 
         public Genome Mutate(Genome g)
@@ -75,7 +73,7 @@ namespace NeuralNetwork
             {
                 if (Rand.NextDouble() < MutationRate)
                 {
-                    g.Genes[i] = Rand.NextDouble();
+                    g.Genes[i] += (Rand.NextDouble() - Rand.NextDouble());
                 }
             }
             return g;

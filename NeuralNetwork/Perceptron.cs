@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NeuralNetwork
 {
-    public class Perceptron
+    public class Perceptron : INeuron
     {
         public List<double> Weights { get; set; }
         public double LearningConstant { get; set; }
@@ -31,11 +31,5 @@ namespace NeuralNetwork
         {
             return weightedSum >= 0 ? 1 : 0;
         }
-    }
-
-    public enum ActivationFunctions
-    {
-        Binary,
-        Sigmoid
     }
 }

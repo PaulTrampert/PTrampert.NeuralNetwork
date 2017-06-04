@@ -8,7 +8,7 @@ namespace NeuralNetwork
 {
     public class NeuronLayer
     {
-        public List<Neuron> Neurons { get; set; }
+        public List<INeuron> Neurons { get; set; }
 
         public int NumberOfInputs => Neurons.Select(n => n.Weights.Count).Distinct().Single();
 
@@ -24,10 +24,10 @@ namespace NeuralNetwork
             }
         }
 
-        public NeuronLayer(int numInputs, int numNeurons, Random rand = null)
+        public NeuronLayer(int numInputs, int numNeurons, double p, Random rand = null)
         {
             var random = rand ?? new Random();
-            Neurons = new int[numNeurons].Select(i => new Neuron(numInputs, random)).ToList();
+            Neurons = new int[numNeurons].Select(i => new Neuron(numInputs, p, random)).Cast<INeuron>().ToList();
         }
 
         public List<double> Think(List<double> inputs)

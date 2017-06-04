@@ -5,14 +5,16 @@ using System.Text;
 
 namespace NeuralNetwork
 {
-    public class Neuron
+    public class Neuron : INeuron
     {
         public List<double> Weights { get; set; }
+        public double P { get; set; }
 
-        public Neuron(int inputs, Random rand = null)
+        public Neuron(int inputs, double p, Random rand = null)
         {
             var random = rand ?? new Random();
-            Weights = new int[inputs].Select(i => random.NextDouble()).ToList();
+            Weights = new int[inputs].Select(i => 2 * random.NextDouble() - 1).ToList();
+            P = p;
         }
 
         public double Think(List<double> inputs)
@@ -22,7 +24,7 @@ namespace NeuralNetwork
 
         private double Sigmoid(double weightedSum)
         {
-            return 1 / (1 + Math.Exp(-weightedSum));
+            return 1 / (1 + Math.Exp(-weightedSum/P));
         }
     }
 }
