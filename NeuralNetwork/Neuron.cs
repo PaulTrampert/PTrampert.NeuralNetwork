@@ -13,6 +13,11 @@ namespace NeuralNetwork
         public double Output { get; set; }
         public double LearningRate { get; set; }
 
+        public Neuron()
+        {
+            
+        }
+
         public Neuron(int inputs, double learningRate = .1, double p = 1, Random rand = null)
         {
             var random = rand ?? new Random();
@@ -44,6 +49,16 @@ namespace NeuralNetwork
         private double Sigmoid(double weightedSum)
         {
             return 1 / (1 + Math.Exp(-weightedSum/P));
+        }
+
+        public Neuron Clone(Random rand = null)
+        {
+            return new Neuron
+            {
+                Weights = Weights,
+                LearningRate = LearningRate,
+                P = P
+            };
         }
     }
 }

@@ -12,6 +12,8 @@ namespace NeuralNetwork
 
         public int NumberOfInputs => Layers.First().NumberOfInputs;
 
+        public double FitnessScore { get; set; }
+
         public List<double> Genes
         {
             get => Layers.SelectMany(l => l.Weights).ToList();
@@ -32,6 +34,8 @@ namespace NeuralNetwork
             }
         }
 
+        public Brain() { }
+
         public Brain(int numInputs, int numHiddenLayers, int layerWidth, int numOutputs, double learningRate = .1, double p = 1, Random rand = null)
         {
             if (numHiddenLayers < 1)
@@ -43,6 +47,14 @@ namespace NeuralNetwork
             Layers.Add(new NeuronLayer(numInputs, layerWidth, learningRate, p, random));
             Layers.AddRange(new int[numHiddenLayers - 1].Select(i => new NeuronLayer(layerWidth, layerWidth, learningRate, p, random)).ToList());
             Layers.Add(new NeuronLayer(layerWidth, numOutputs, learningRate, p, random));
+        }
+
+        public Brain Clone()
+        {
+            return new Brain
+            {
+                Layers = Layers.Select(l => l.Clone()).ToList()
+            };
         }
 
         public List<List<double>> Think(List<double> inputs)

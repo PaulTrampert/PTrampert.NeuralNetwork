@@ -24,6 +24,11 @@ namespace NeuralNetwork
             }
         }
 
+        public NeuronLayer()
+        {
+            
+        }
+
         public NeuronLayer(int numInputs, int numNeurons, double learningRate = .1, double p = 1, Random rand = null)
         {
             var random = rand ?? new Random();
@@ -53,6 +58,14 @@ namespace NeuralNetwork
         {
             var updateTasks = Neurons.Select(neuron => Task.Run(() => neuron.UpdateWeights(inputs))).ToList();
             await Task.WhenAll(updateTasks);
+        }
+
+        public NeuronLayer Clone()
+        {
+            return new NeuronLayer
+            {
+                Neurons = Neurons.Select(n => n.Clone()).ToList()
+            };
         }
     }
 }
