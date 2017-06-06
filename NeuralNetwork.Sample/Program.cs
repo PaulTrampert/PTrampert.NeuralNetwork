@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +11,19 @@ namespace NeuralNetwork.Sample
     class Program
     {
         static void Main(string[] args)
+        {
+            var random = new Random();
+            var brain = new Brain(0xFFFF, 1, 500, 6, rand: random);
+            var bytes = new byte[0xffff];
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            var result = brain.ThinkAsync(bytes.Select(Convert.ToDouble).ToList()).Result.Last();
+            stopwatch.Stop();
+            Console.WriteLine($"Brain took {stopwatch.Elapsed} to think.");
+            Console.ReadLine();
+        }
+
+        static void EvoMain(string[] args)
         {
             var random = new Random();
             var evoEng = new EvolutionEngine(random)
