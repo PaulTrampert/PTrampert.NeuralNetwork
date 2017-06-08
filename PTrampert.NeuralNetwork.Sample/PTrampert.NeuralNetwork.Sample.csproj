@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NeuralNetwork\PTrampert.NeuralNetwork.csproj" />
+    <ProjectReference Include="..\PTrampert.NeuralNetwork\PTrampert.NeuralNetwork.csproj" />
   </ItemGroup>
 
 </Project>

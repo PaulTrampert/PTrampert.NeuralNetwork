@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTrampert.NeuralNetwork", "NeuralNetwork\PTrampert.NeuralNetwork.csproj", "{5CBAD617-55D5-4DE9-86E7-DA73429606DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTrampert.NeuralNetwork", "PTrampert.NeuralNetwork\PTrampert.NeuralNetwork.csproj", "{93C1BD0C-EB49-474E-AA48-F1AB2EB4C478}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTrampert.NeuralNetwork.Sample", "NeuralNetwork.Sample\PTrampert.NeuralNetwork.Sample.csproj", "{45BF6842-6B7F-48BE-B004-AAADC0DCF5B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTrampert.NeuralNetwork.Sample", "PTrampert.NeuralNetwork.Sample\PTrampert.NeuralNetwork.Sample.csproj", "{9839BCFF-7B83-4942-8420-29D74CA2F48B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTrampert.NeuralNetwork.Test", "NeuralNetwork.Test\PTrampert.NeuralNetwork.Test.csproj", "{2DCF4C39-5962-4A91-B042-370A181ED22E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTrampert.NeuralNetwork.Test", "PTrampert.NeuralNetwork.Test\PTrampert.NeuralNetwork.Test.csproj", "{88BAA351-BC1F-456F-963A-050C2EF851F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B0B2E61F-BB6E-46C5-B52E-DB2D02798FEA}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		Jenkinsfile = Jenkinsfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +21,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5CBAD617-55D5-4DE9-86E7-DA73429606DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5CBAD617-55D5-4DE9-86E7-DA73429606DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5CBAD617-55D5-4DE9-86E7-DA73429606DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5CBAD617-55D5-4DE9-86E7-DA73429606DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{45BF6842-6B7F-48BE-B004-AAADC0DCF5B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{45BF6842-6B7F-48BE-B004-AAADC0DCF5B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{45BF6842-6B7F-48BE-B004-AAADC0DCF5B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{45BF6842-6B7F-48BE-B004-AAADC0DCF5B2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2DCF4C39-5962-4A91-B042-370A181ED22E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2DCF4C39-5962-4A91-B042-370A181ED22E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DCF4C39-5962-4A91-B042-370A181ED22E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2DCF4C39-5962-4A91-B042-370A181ED22E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93C1BD0C-EB49-474E-AA48-F1AB2EB4C478}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93C1BD0C-EB49-474E-AA48-F1AB2EB4C478}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93C1BD0C-EB49-474E-AA48-F1AB2EB4C478}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93C1BD0C-EB49-474E-AA48-F1AB2EB4C478}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9839BCFF-7B83-4942-8420-29D74CA2F48B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9839BCFF-7B83-4942-8420-29D74CA2F48B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9839BCFF-7B83-4942-8420-29D74CA2F48B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9839BCFF-7B83-4942-8420-29D74CA2F48B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88BAA351-BC1F-456F-963A-050C2EF851F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88BAA351-BC1F-456F-963A-050C2EF851F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88BAA351-BC1F-456F-963A-050C2EF851F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88BAA351-BC1F-456F-963A-050C2EF851F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
