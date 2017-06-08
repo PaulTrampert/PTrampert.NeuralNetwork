@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace NeuralNetwork.Test
+namespace PTrampert.NeuralNetwork.Test
 {
     public class NeuronTests
     {

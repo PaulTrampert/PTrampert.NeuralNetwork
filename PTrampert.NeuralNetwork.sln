@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork", "NeuralNetwork\NeuralNetwork.csproj", "{5CBAD617-55D5-4DE9-86E7-DA73429606DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTrampert.NeuralNetwork", "NeuralNetwork\PTrampert.NeuralNetwork.csproj", "{5CBAD617-55D5-4DE9-86E7-DA73429606DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.Sample", "NeuralNetwork.Sample\NeuralNetwork.Sample.csproj", "{45BF6842-6B7F-48BE-B004-AAADC0DCF5B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTrampert.NeuralNetwork.Sample", "NeuralNetwork.Sample\PTrampert.NeuralNetwork.Sample.csproj", "{45BF6842-6B7F-48BE-B004-AAADC0DCF5B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.Test", "NeuralNetwork.Test\NeuralNetwork.Test.csproj", "{2DCF4C39-5962-4A91-B042-370A181ED22E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTrampert.NeuralNetwork.Test", "NeuralNetwork.Test\PTrampert.NeuralNetwork.Test.csproj", "{2DCF4C39-5962-4A91-B042-370A181ED22E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

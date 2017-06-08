@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 using Xunit;
 
-namespace NeuralNetwork.Test
+namespace PTrampert.NeuralNetwork.Test
 {
     public class NeuronLayerTests
     {

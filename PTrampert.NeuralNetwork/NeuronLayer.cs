@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NeuralNetwork
+namespace PTrampert.NeuralNetwork
 {
     public class NeuronLayer
     {
