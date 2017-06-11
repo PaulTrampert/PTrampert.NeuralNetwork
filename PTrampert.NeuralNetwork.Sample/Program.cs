@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace PTrampert.NeuralNetwork.Sample
@@ -14,11 +15,17 @@ namespace PTrampert.NeuralNetwork.Sample
             var random = new Random();
             var brain = new Brain(0xFFFF, 1, 500, 6, rand: random);
             var bytes = new byte[0xffff];
+            random.NextBytes(bytes);
+            var counter = 0;
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            var result = brain.ThinkAsync(bytes.Select(Convert.ToDouble).ToList()).Result.Last();
+            while (stopwatch.Elapsed < TimeSpan.FromSeconds(10))
+            {
+                var result = brain.ThinkAsync(bytes.Select(Convert.ToDouble).ToList()).Result.Last();
+                counter++;
+            }
             stopwatch.Stop();
-            Console.WriteLine($"Brain took {stopwatch.Elapsed} to think.");
+            Console.WriteLine($"Brain processed {counter} arrays in {stopwatch.Elapsed}.");
             Console.ReadLine();
         }
 
