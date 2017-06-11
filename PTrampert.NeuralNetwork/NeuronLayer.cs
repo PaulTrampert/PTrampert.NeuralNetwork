@@ -28,10 +28,10 @@ namespace PTrampert.NeuralNetwork
             
         }
 
-        public NeuronLayer(int numInputs, int numNeurons, double learningRate = .1, double p = 1, Random rand = null)
+        public NeuronLayer(int numInputs, int numNeurons, ActivationFunction activationFunction = ActivationFunction.Sigmoid, double learningRate = .1, double p = 1, Random rand = null)
         {
             var random = rand ?? new Random();
-            Neurons = new int[numNeurons].Select(i => new Neuron(numInputs, learningRate, p, random)).ToList();
+            Neurons = new int[numNeurons].Select(i => new Neuron(numInputs, activationFunction, learningRate, p, random)).ToList();
         }
 
         public List<double> Think(List<double> inputs)

@@ -35,7 +35,7 @@ namespace PTrampert.NeuralNetwork
 
         public Brain() { }
 
-        public Brain(int numInputs, int numHiddenLayers, int layerWidth, int numOutputs, double learningRate = .1, double p = 1, Random rand = null)
+        public Brain(int numInputs, int numHiddenLayers, int layerWidth, int numOutputs, ActivationFunction activationFunction = ActivationFunction.Sigmoid, double learningRate = .1, double p = 1, Random rand = null)
         {
             if (numHiddenLayers < 1)
             {
@@ -43,9 +43,9 @@ namespace PTrampert.NeuralNetwork
             }
             var random = rand ?? new Random();
             Layers = new List<NeuronLayer>();
-            Layers.Add(new NeuronLayer(numInputs, layerWidth, learningRate, p, random));
-            Layers.AddRange(new int[numHiddenLayers - 1].Select(i => new NeuronLayer(layerWidth, layerWidth, learningRate, p, random)).ToList());
-            Layers.Add(new NeuronLayer(layerWidth, numOutputs, learningRate, p, random));
+            Layers.Add(new NeuronLayer(numInputs, layerWidth, activationFunction, learningRate, p, random));
+            Layers.AddRange(new int[numHiddenLayers - 1].Select(i => new NeuronLayer(layerWidth, layerWidth, activationFunction, learningRate, p, random)).ToList());
+            Layers.Add(new NeuronLayer(layerWidth, numOutputs, activationFunction, learningRate, p, random));
         }
 
         public Brain Clone()
