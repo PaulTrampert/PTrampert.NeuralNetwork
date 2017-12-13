@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace PTrampert.NeuralNetwork
@@ -13,6 +14,7 @@ namespace PTrampert.NeuralNetwork
 
         public double FitnessScore { get; set; }
 
+        [IgnoreDataMember]
         public List<double> Genes
         {
             get => Layers.SelectMany(l => l.Weights).ToList();
