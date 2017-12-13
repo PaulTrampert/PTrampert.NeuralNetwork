@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Description>Library for creating and using basic neural networks.</Description>
     <PackageLicenseUrl>https://github.com/PaulTrampert/PTrampert.NeuralNetwork/blob/master/LICENSE.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/PaulTrampert/PTrampert.NeuralNetwork</PackageProjectUrl>
