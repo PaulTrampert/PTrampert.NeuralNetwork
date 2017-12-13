@@ -16,7 +16,9 @@ namespace PTrampert.NeuralNetwork
         private static readonly Dictionary<ActivationFunction, FuncAndDeriv> ActivationFunctions = new Dictionary<ActivationFunction, FuncAndDeriv>
         {
             { ActivationFunction.Sigmoid, new FuncAndDeriv { Func = Sigmoid, Deriv = SigmoidPrime } },
-            { ActivationFunction.Tanh, new FuncAndDeriv { Func = Tanh, Deriv = TanhPrime } }
+            { ActivationFunction.Tanh, new FuncAndDeriv { Func = Tanh, Deriv = TanhPrime } },
+            { ActivationFunction.ReLU, new FuncAndDeriv { Func = Relu, Deriv = ReluPrime} },
+            { ActivationFunction.Linear, new FuncAndDeriv { Func = Linear, Deriv = LinearPrime } }
         };
 
         public Neuron()
@@ -68,6 +70,26 @@ namespace PTrampert.NeuralNetwork
             return 1 - Math.Pow(output, 2);
         }
 
+        private static double Relu(double weightedSum, double p)
+        {
+            return Math.Max(0, weightedSum);
+        }
+
+        private static double ReluPrime(double output)
+        {
+            return output > 0 ? 1 : 0;
+        }
+
+        private static double Linear(double weightedSum, double p)
+        {
+            return weightedSum;
+        }
+
+        private static double LinearPrime(double output)
+        {
+            return 1;
+        }
+
         public Neuron Clone(Random rand = null)
         {
             return new Neuron
@@ -89,6 +111,8 @@ namespace PTrampert.NeuralNetwork
     public enum ActivationFunction
     {
         Sigmoid,
-        Tanh
+        Tanh,
+        ReLU,
+        Linear
     }
 }
